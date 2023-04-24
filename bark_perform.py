@@ -94,23 +94,33 @@ def save_npz_file(filepath, x_semantic_continued, coarse_prompt, fine_prompt, ou
     np.savez(filepath, semantic_prompt=x_semantic_continued, coarse_prompt=coarse_prompt, fine_prompt=fine_prompt)
     print(f"speaker file for this clip saved to {filepath}")
 
-def split_text(text, split_words=0, split_lines=0):
+def split_text(text, split_words=0, split_lines=0, split_sentences=0):
+    def split_into_sentences(text):
+        text = re.sub(r'([Mm]r|[Mm]rs|[Mm]s|[Dd]r|[Pp]rof)\.', r'\1#####', text)
+        sentences = re.split(r'(?<=[.!?])\s+', text)
+        sentences = [s.replace("#####", ".") for s in sentences]
+        return sentences
+
     if split_words > 0:
         words = text.split()
         chunks = [' '.join(words[i:i + split_words]) for i in range(0, len(words), split_words)]
     elif split_lines > 0:
         lines = [line for line in text.split('\n') if line.strip()]
         chunks = ['\n'.join(lines[i:i + split_lines]) for i in range(0, len(lines), split_lines)]
+    elif split_sentences > 0:
+        chunks = split_into_sentences(text)
     else:
         chunks = [text]
+
     return chunks
+
 
 def save_audio_to_file(filepath, audio_array, sample_rate=24000, format='WAV', subtype='PCM_16', output_dir=None):
     sf.write(filepath, audio_array, sample_rate, format=format, subtype=subtype)
     print(f"Saved audio to {filepath}")
 
 
-def gen_and_save_audio(text_prompt, history_prompt=None, text_temp=0.7, waveform_temp=0.7, filename="", output_dir="bark_samples", split_by_words=0, split_by_lines=0, stable_mode=False, confused_travolta_mode=False, iteration=1):
+def gen_and_save_audio(text_prompt, history_prompt=None, text_temp=0.7, waveform_temp=0.7, filename="", output_dir="bark_samples", split_by_words=0, split_by_lines=0, split_by_sentences=0, stable_mode=False, confused_travolta_mode=False, iteration=1):
     def generate_unique_filename(base_filename):
         name, ext = os.path.splitext(base_filename)
         unique_filename = base_filename
@@ -128,7 +138,8 @@ def gen_and_save_audio(text_prompt, history_prompt=None, text_temp=0.7, waveform
         else:
             print(f"  No speaker. Randomly generating a speaker.")
  
-    text_chunks = split_text(text_prompt, split_by_words, split_by_lines)
+    text_chunks = split_text(text_prompt, split_by_words, split_by_lines, split_by_sentences)
+
     
     base = None
     npzbase = None
@@ -251,13 +262,14 @@ def main(args):
             
             split_by_words = args.split_by_words if args.split_by_words else 0
             split_by_lines = args.split_by_lines if args.split_by_lines else 0
+            split_by_sentences = args.split_by_sentences if args.split_by_sentences else 0
 
             if args.iterations > 1: 
                 for iteration in range(1, args.iterations + 1):
                     print(f"Iteration {iteration} of {args.iterations}.")
-                    gen_and_save_audio(prompt, history_prompt, text_temp, waveform_temp, filename, output_dir, split_by_words, split_by_lines, stable_mode, confused_travolta_mode, iteration=iteration)
+                    gen_and_save_audio(prompt, history_prompt, text_temp, waveform_temp, filename, output_dir, split_by_words, split_by_lines, split_by_sentences, stable_mode, confused_travolta_mode)
             else:
-                gen_and_save_audio(prompt, history_prompt, text_temp, waveform_temp, filename, output_dir, split_by_words, split_by_lines, stable_mode, confused_travolta_mode)
+                gen_and_save_audio(prompt, history_prompt, text_temp, waveform_temp, filename, output_dir, split_by_words, split_by_lines, split_by_sentences, stable_mode, confused_travolta_mode)
 
 
 if __name__ == "__main__":
@@ -304,6 +316,7 @@ if __name__ == "__main__":
     parser.add_argument("--split_by_lines", type=int, default=0, help="Breaks text_prompt into <14 second audio clips every x lines")
     parser.add_argument("--stable_mode", action="store_true", help="Choppier and not as natural sounding, but much more stable for very long audio files.")
     parser.add_argument("--confused_travolta_mode", default=False, action="store_true", help="Just for fun. Try it and you'll understand.")
+    parser.add_argument("--split_by_sentences", type=int, default=0, help="Breaks text_prompt into <14 second audio clips by sentences")
 
     parser.add_argument("--prompt_file", help="Optional. The path to a file containing the text prompt. Overrides the --text_prompt option if provided.")
     parser.add_argument("--prompt_file_separator", help="Optional. The separator used to split the content of the prompt_file into multiple text prompts.")

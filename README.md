@@ -62,6 +62,7 @@ _For music, I recommend using the --split_by_lines and making sure you use a mul
 --iterations                 Number of iterations. Default is 1.
 --split_by_words             Breaks text_prompt into <14 second audio clips every x words.
 --split_by_lines             Breaks text_prompt into <14 second audio clips every x lines.
+--split_by_sentences         Breaks text_prompt into <14 second audio clips every x sentences.
 --stable_mode                Choppier and not as natural sounding, but much more stable for very long audio files.
 --confused_travolta_mode     Just for fun. Try it, and you'll understand. 🤷
 
