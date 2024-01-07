@@ -5,6 +5,10 @@ _(This is no longer just a command line wrapper...)_
 April 22: The main bark repo just implemented small model support, so if just want that you don't need use this fork. If I can find time this weekend I'll unhack the way I did and use their parameters.
 <img width="1201" alt="Screenshot 2024-01-07 at 2 27 18 AM" src="https://github.com/DrewThomasson/bark/assets/126999465/fe8eaf87-df32-4cf0-ba78-37aabb667ce2">
 
+### outputs also as a m4b with all book metadata and chapters, will look like this is when it into any general audiobook player
+![IMG_4116](https://github.com/DrewThomasson/bark/assets/126999465/58b4a8f5-9ec5-42eb-9c2a-28be4e843c7e)
+
+
 **Now it's BARK INFINITY!** 🎉
 
 ## 🌟 Main Features 🌟
