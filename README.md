@@ -3,6 +3,7 @@
 _(This is no longer just a command line wrapper...)_
 
 April 22: The main bark repo just implemented small model support, so if just want that you don't need use this fork. If I can find time this weekend I'll unhack the way I did and use their parameters.
+<img width="1201" alt="Screenshot 2024-01-07 at 2 27 18 AM" src="https://github.com/DrewThomasson/bark/assets/126999465/fe8eaf87-df32-4cf0-ba78-37aabb667ce2">
 
 **Now it's BARK INFINITY!** 🎉
 
