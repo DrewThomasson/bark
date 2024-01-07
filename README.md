@@ -8,6 +8,7 @@ April 22: The main bark repo just implemented small model support, so if just wa
 ### outputs also as a m4b with all book metadata and chapters, will look like this is when it into any general audiobook player
 ![IMG_4116](https://github.com/DrewThomasson/bark/assets/126999465/58b4a8f5-9ec5-42eb-9c2a-28be4e843c7e) | width=100)
 
+![IMG_4116](https://github.com/DrewThomasson/bark/assets/126999465/58b4a8f5-9ec5-42eb-9c2a-28be4e843c7e) | width=length 20)
 
 **Now it's BARK INFINITY!** 🎉
 
