@@ -9,6 +9,12 @@ April 22: The main bark repo just implemented small model support, so if just wa
 ![IMG_FFAE40F23437-1](https://github.com/DrewThomasson/bark/assets/126999465/d3d53398-d06c-496f-bc25-317a9db44e26)
 
 
+
+https://github.com/DrewThomasson/bark/assets/126999465/5da79b9d-2974-471e-a564-31a180ba2833
+
+
+
+
 ![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png =250x250)
 
 **Now it's BARK INFINITY!** 🎉
