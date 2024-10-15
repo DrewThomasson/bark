@@ -287,3 +287,9 @@ Please contact us at `bark@suno.ai` if you need access to a larger version of th
 We’re developing a playground for our models, including Bark. 
 
 If you are interested, you can sign up for early access [here](https://3os84zs17th.typeform.com/suno-studio).
+
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=davidmartinrius/speech-dataset-generator&type=Date)](https://star-history.com/#davidmartinrius/speech-dataset-generator&Date)
